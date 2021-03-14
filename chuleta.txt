@@ -6,3 +6,4 @@ npx create-nuxt-app <nombre-del-proyecto>
                               Comandos Nuxt.js
 -------------------------------------------------------------------------------------------
 npm run dev                                         - Inicia el servidor
+npm install @nuxtjs/bulma                           - Instala Bulma en el proyecto
