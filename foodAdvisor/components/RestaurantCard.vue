@@ -8,7 +8,9 @@
     <div class="card-content">
       <div class="media">
         <div class="media-content">
-          <p class="title is-4 restaurant-name">{{ name }}</p>
+          <p class="title is-4 restaurant-name">
+            {{ name }}
+          </p>
           <div class="columns">
             <div class="column">
               <span class="is-category tag">{{ category }}</span>
@@ -31,20 +33,32 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: "Bar Paco",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.,",
-      likes: 0,
-      category: "Burger",
-      slug: "restaurant-name",
-    };
+  props: {
+    name: {
+      type: String,
+      default: "",
+    },
+    description: {
+      type: String,
+      default: "",
+    },
+    category: {
+      type: String,
+      default: "",
+    },
+    slug: {
+      type: String,
+      default: "",
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
   },
   methods: {
     sumLikes() {
-      // this.likes = this.likes + 1;
-      this.likes++;
+      this.$emit("likeButton");
+      // this.likes++;
     },
   },
 };

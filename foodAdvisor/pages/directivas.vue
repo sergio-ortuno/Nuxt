@@ -10,6 +10,8 @@
     <p>Nombre:</p>
     <input v-model="name" type="text" />
     {{ name }}
+    {{ nameReverse }}
+    <span v-if="error !== ''" class="tag is-warning">{{ error }}</span>
     <button v-on:click="saludo" class="button is-info">Saluda</button>
   </div>
 </template>
@@ -22,7 +24,22 @@ export default {
       num: 5,
       items: [1, 2, 3, 4, 5, 6],
       name: "",
+      error: "",
     };
+  },
+  computed: {
+    nameReverse() {
+      return this.name.split("").reverse().join("");
+    },
+  },
+  watch: {
+    name() {
+      if (this.name.length > 5) {
+        this.error = "Nombre demasiado largo";
+      } else {
+        this.error = "";
+      }
+    },
   },
   methods: {
     saludo() {
@@ -32,5 +49,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
