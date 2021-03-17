@@ -1,4 +1,4 @@
-# foodAdvisor - tutorial por [OpenWebinars](https://openwebinars.net/academia/aprende/nuxtjs/).
+# foodAdvisor - tutorial por [OpenWebinars](https://openwebinars.net).
 
 ## Build Setup
 
