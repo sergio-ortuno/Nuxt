@@ -1,58 +1,75 @@
 <template>
-  <div class="container">
-    <section class="section">
-      <h1 class="title is-1">Food Advisor</h1>
-      <RestaurantCard
-        v-for="restaurant in restaurants"
-        v-bind:key="restaurant"
-        :name="restaurant.name"
-        :description="restaurant.description"
-        :category="restaurant.category"
-        :slug="restaurant.slug"
-        :likes="likes"
-        v-on:likeButton="sumLikes"
-      />
-    </section>
+  <div>
+    <hero @onShowBanner="changeShowBannerValue">
+      <Banner slot="header" v-if="showBanner" />
+      <Slogan slot="header" v-else />
+    </hero>
+    <div class="container">
+      <section class="section">
+        <h1 class="title is-1">Food Advisor</h1>
+        <RestaurantCard
+          v-for="(restaurant, index) in restaurants"
+          :key="index"
+          :name="restaurant.name"
+          :description="restaurant.description"
+          :category="restaurant.category"
+          :slug="restaurant.slug"
+          :likes="restaurant.likes"
+          v-on:likeButton="sumLikes(index)"
+        />
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
 import RestaurantCard from "@/components/RestaurantCard";
+import Hero from "@/components/Hero";
+import Banner from "@/components/Banner";
+import Slogan from "@/components/Slogan";
 export default {
   components: {
     RestaurantCard,
+    Hero,
+    Banner,
+    Slogan,
   },
   data() {
     return {
-      likes: 0,
+      showBanner: false,
       restaurants: [
         {
-          name: "Manairo",
-          slug: "manairo",
-          category: "Italian",
-          description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+          name: "Restaurant La Cúpula",
+          description: "Platos mediterráneos y coches antiguos",
+          slug: "la-cupula",
+          category: "Mediterráneos",
+          likes: 0,
         },
         {
-          name: "Gorría Restaurant",
-          slug: "gorria-restaurant",
-          category: "Asian",
+          name: "Restaurant Singular",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Brunch, desayunos y comidas con variada carta mediterránea en un luminoso café de moderno diseño minimalista.",
+          slug: "Singular",
+          category: "Brunch",
+          likes: 0,
         },
         {
-          name: "Dans le Noir?",
-          slug: "dans-noir",
-          category: "Mediterranean",
+          name: "Oporto Restaurante",
           description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Bacalao, francesinhas y otras recetas de la gastronomía lusa en un coqueto bar decorado con cajas de oporto.",
+          slug: "oporto",
+          category: "Mediterráneos",
+          likes: 0,
         },
       ],
     };
   },
   methods: {
-    sumLikes() {
-      this.likes++;
+    sumLikes(index) {
+      this.restaurants[index].likes++;
+    },
+    changeShowBannerValue() {
+      this.showBanner = !this.showBanner;
     },
   },
 };
