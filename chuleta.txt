@@ -8,3 +8,4 @@ npx create-nuxt-app <nombre-del-proyecto>
 npm run dev                                        - Inicia el servidor
 npm install                                        - Instala las dependencias
 npm install @nuxtjs/bulma                          - Instala Bulma en el proyecto
+npm install --save @nuxtjs/axios                   - Instasla AXIOS
