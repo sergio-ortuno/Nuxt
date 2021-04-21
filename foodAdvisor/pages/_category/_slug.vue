@@ -61,7 +61,11 @@ import api from "~/services/api";
 export default {
   async asyncData({ params }) {
     try {
-      /* petición getOneRestaurant() */
+      const payload = {
+        slug: params.slug,
+      };
+      const { data } = await api.getOneRestaurant(payload);
+      return { restaurant: data.shift() };
     } catch (error) {
       console.log({ statusCode: 404, message: "Restaurant not found" });
     }

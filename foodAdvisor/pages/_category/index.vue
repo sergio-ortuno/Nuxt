@@ -44,6 +44,11 @@ export default {
   async asyncData({ params }) {
     try {
       /* petición getRestaurantsByCategory() */
+      const payload = {
+        category: params.category,
+      };
+      const { data } = await api.getRestaurantsByCategory(payload);
+      return { restaurants: data };
     } catch (error) {
       console.log({ statusCode: 404, message: "Category not found" });
     }
